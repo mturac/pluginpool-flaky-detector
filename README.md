@@ -1,3 +1,5 @@
+![hero](./assets/hero.svg)
+
 # flaky-detector
 
 **Run your test command N times. Find out which tests don't always agree with themselves.**

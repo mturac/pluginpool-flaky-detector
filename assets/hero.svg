@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="flaky-detector — Run a test N times. See which ones don't agree.">
+      <defs>
+        <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stop-color="#0d1117"/>
+          <stop offset="100%" stop-color="#161b22"/>
+        </linearGradient>
+        <linearGradient id="accentLine" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0%" stop-color="#ff7b72" stop-opacity="0"/>
+          <stop offset="50%" stop-color="#ff7b72" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#ff7b72" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="320" fill="url(#bg)"/>
+      <rect x="0" y="0" width="1200" height="3" fill="url(#accentLine)"/>
+      <text x="60" y="130" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="64" font-weight="800" fill="#e6edf3" letter-spacing="-1.5">flaky-detector</text>
+      <text x="60" y="175" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="22" fill="#ff7b72">/flaky-detector</text>
+      <text x="60" y="225" font-family="ui-sans-serif,system-ui,sans-serif" font-size="22" fill="#8b949e">Run a test N times. See which ones don't agree.</text>
+      <g transform="translate(820,60)">
+    <text x="0" y="30" font-family="ui-monospace,monospace" font-size="13" fill="#8b949e">10 runs · per-test flakiness</text>
+    <rect x="0" y="50" width="320" height="22" rx="3" fill="#161b22"/>
+    <rect x="0" y="50" width="128" height="22" rx="3" fill="#f85149"/>
+    <text x="138" y="66" font-family="ui-monospace,monospace" font-size="12" fill="#e6edf3">40%  test_idempotency</text>
+    <rect x="0" y="80" width="320" height="22" rx="3" fill="#161b22"/>
+    <rect x="0" y="80" width="64" height="22" rx="3" fill="#d29922"/>
+    <text x="74" y="96" font-family="ui-monospace,monospace" font-size="12" fill="#e6edf3">20%  test_index_warmup</text>
+    <rect x="0" y="110" width="320" height="22" rx="3" fill="#161b22"/>
+    <rect x="0" y="110" width="320" height="22" rx="3" fill="#56d364"/>
+    <text x="10" y="126" font-family="ui-monospace,monospace" font-size="12" fill="#0d1117">100% test_login (always passing)</text>
+    <text x="0" y="170" font-family="ui-sans-serif,sans-serif" font-size="12" fill="#6e7681">exit 1 (flaky)  ·  exit 2 (always-failing)</text>
+</g>
+      <text x="60" y="290" font-family="ui-monospace,monospace" font-size="13" fill="#6e7681">pluginpool · MIT · Python 3 stdlib only</text>
+    </svg>
