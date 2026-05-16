@@ -120,16 +120,17 @@ def test_render_markdown_hides_always_passing():
     assert "flakiness" in md.lower()
 
 
-def test_cli_exit_code_clean(tmp_path):
-    # `echo` produces no parseable lines → no tests → clean exit
+def test_cli_exit_code_warns_when_nothing_parsed(tmp_path):
+    """`echo hello` parses to zero tests across all runs — the script must
+    surface this as a non-zero exit (was a silent false-green pre-review)."""
     r = subprocess.run(
         [sys.executable, str(SCRIPT), "--cmd", "echo hello", "--runs", "2", "--parser", "pytest"],
         capture_output=True, text=True,
     )
-    assert r.returncode == 0
+    assert r.returncode == 3
     data = json.loads(r.stdout)
     assert data["summary"]["total_runs"] == 2
-    assert data["tests"] == []
+    assert data["warnings"]
 
 
 def test_cli_help_works():

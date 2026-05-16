@@ -147,12 +147,27 @@ def run_many(cmd: str, runs: int, parallel: int) -> list[str]:
 
 # ---------- aggregator ----------
 
-def aggregate(per_run: list[dict[str, str]]) -> dict:
+def aggregate(per_run: list[dict[str, str]], *, impute_missing_as_pass: bool = True) -> dict:
+    """Merge per-run results into a flakiness report.
+
+    ``impute_missing_as_pass`` is the key fix for ``pytest -q``: that mode
+    only lists failures in the tail summary, so a test that fails in run 1
+    and is *absent* from run 2 should be counted as ``pass=1, fail=1``,
+    not ``pass=0, fail=1`` (review #2 critical math finding). When False,
+    the original "only what we saw" semantics apply.
+    """
     total = len(per_run)
     counts: dict[str, dict[str, int]] = defaultdict(lambda: {"pass": 0, "fail": 0, "skip": 0})
-    for run in per_run:
+    seen_in_run: dict[str, set[int]] = defaultdict(set)
+    for idx, run in enumerate(per_run):
         for tid, status in run.items():
             counts[tid][status] += 1
+            seen_in_run[tid].add(idx)
+    if impute_missing_as_pass and total > 1:
+        for tid, runs_seen in seen_in_run.items():
+            missing = total - len(runs_seen)
+            if missing > 0:
+                counts[tid]["pass"] += missing
 
     tests = []
     for tid, c in counts.items():
@@ -221,18 +236,26 @@ def main(argv: list[str] | None = None) -> int:
     report = aggregate(per_run)
     report["parser"] = parser_name
 
-    # Guard against silent false-green: if zero tests parsed yet the tally suggests
-    # tests actually ran, surface a warning + non-zero exit.
+    # Guard against silent false-green for ALL parsers, not just pytest:
+    # if commands ran but zero tests were attributed, the output didn't match
+    # the parser. Surface a warning and exit non-zero so the user notices
+    # (review #1 critical false-green finding).
     warnings: list[str] = []
-    if parser_name == "pytest" and not any(per_run) and outputs:
-        for o in outputs:
-            failed, passed = _pytest_tally(o)
-            if failed + passed > 0:
-                warnings.append(
-                    f"pytest reported {failed} failed / {passed} passed but no per-test "
-                    "lines parsed — re-run with `-v` so flaky-detector can attribute results."
-                )
-                break
+    if outputs and not any(per_run):
+        if parser_name == "pytest":
+            for o in outputs:
+                failed, passed = _pytest_tally(o)
+                if failed + passed > 0:
+                    warnings.append(
+                        f"pytest reported {failed} failed / {passed} passed but no per-test "
+                        "lines parsed — re-run with `-v` so flaky-detector can attribute results."
+                    )
+                    break
+        if not warnings:
+            warnings.append(
+                f"parser '{parser_name}' produced 0 tests across {len(outputs)} runs — "
+                "double-check the parser choice or pass `--parser auto`."
+            )
     report["warnings"] = warnings
 
     if args.out:
