@@ -81,6 +81,10 @@ python3 scripts/flaky.py --cmd "jest --ci" --parser jest --runs 5
 - Streaming stdout from very long suites is buffered — be patient on the first run.
 - The parser is tuned for default reporters. Custom plugins (pytest-rich, etc.) may need a tweak.
 
+## Examples
+
+Step-by-step walkthroughs with real input fixtures and the helper's actual output live in [`examples/`](./examples/README.md). Three or four scenarios per plugin — from the happy path to the edge cases the test suite guards.
+
 ## Part of the pluginpool family
 
 Ten focused Claude Code plugins for everyday productivity:
