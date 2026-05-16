@@ -11,9 +11,19 @@
 
 > **TL;DR:** `/flaky-detector --cmd "pytest -v" --runs 10` → per-test flakiness %, sorted worst-first, ready to triage.
 
+#### Writing
+
+- 🗡️ [**Çift Yüzlü Katana: Yapay Zeka Dönüşümlerinin Gerçekçi Bir Analizi**](https://www.linkedin.com/pulse/%C3%A7ift-y%C3%BCzl%C3%BC-katana-yapay-zeka-d%C3%B6n%C3%BC%C5%9F%C3%BCmlerinin-ger%C3%A7ek%C3%A7i-bir-mehmet-turac-80h7f) — AI transformations realistic analysis. The 5 illusions that compound into expensive, fragile systems. (LinkedIn, 2026)
+
+
 ## Why this exists
 
 A test that fails 1-in-20 wastes more team time than a test that never fails. CI flakes erode trust; everyone learns to "just re-run it". This tool runs your suite N times, parses pass/fail per test, and tells you exactly which tests are flaky and at what rate — so you can decide: rerun, isolate, mark `@pytest.mark.flaky`, or fix the underlying race.
+
+#### Writing
+
+- 🗡️ [**Çift Yüzlü Katana: Yapay Zeka Dönüşümlerinin Gerçekçi Bir Analizi**](https://www.linkedin.com/pulse/%C3%A7ift-y%C3%BCzl%C3%BC-katana-yapay-zeka-d%C3%B6n%C3%BC%C5%9F%C3%BCmlerinin-ger%C3%A7ek%C3%A7i-bir-mehmet-turac-80h7f) — AI transformations realistic analysis. The 5 illusions that compound into expensive, fragile systems. (LinkedIn, 2026)
+
 
 ## Install (Claude Code)
 
@@ -22,6 +32,11 @@ git clone https://github.com/mturac/pluginpool-flaky-detector ~/.claude/plugins/
 ```
 
 Restart Claude Code; the slash command `/flaky-detector` appears.
+
+#### Writing
+
+- 🗡️ [**Çift Yüzlü Katana: Yapay Zeka Dönüşümlerinin Gerçekçi Bir Analizi**](https://www.linkedin.com/pulse/%C3%A7ift-y%C3%BCzl%C3%BC-katana-yapay-zeka-d%C3%B6n%C3%BC%C5%9F%C3%BCmlerinin-ger%C3%A7ek%C3%A7i-bir-mehmet-turac-80h7f) — AI transformations realistic analysis. The 5 illusions that compound into expensive, fragile systems. (LinkedIn, 2026)
+
 
 ## Quick start
 
@@ -35,6 +50,11 @@ python3 scripts/flaky.py --cmd "jest --ci" --parser jest --runs 5
 > If you use `-q`, flaky-detector still picks up the tail `FAILED path::test` summary
 > lines and exits non-zero with a warning rather than reporting a false green.
 
+#### Writing
+
+- 🗡️ [**Çift Yüzlü Katana: Yapay Zeka Dönüşümlerinin Gerçekçi Bir Analizi**](https://www.linkedin.com/pulse/%C3%A7ift-y%C3%BCzl%C3%BC-katana-yapay-zeka-d%C3%B6n%C3%BC%C5%9F%C3%BCmlerinin-ger%C3%A7ek%C3%A7i-bir-mehmet-turac-80h7f) — AI transformations realistic analysis. The 5 illusions that compound into expensive, fragile systems. (LinkedIn, 2026)
+
+
 ## Flags
 
 | Flag | Default | Description |
@@ -46,6 +66,11 @@ python3 scripts/flaky.py --cmd "jest --ci" --parser jest --runs 5
 | `--out` | _none_ | Write JSON report to this path |
 | `--format` | `json` | `json` or `md` |
 
+#### Writing
+
+- 🗡️ [**Çift Yüzlü Katana: Yapay Zeka Dönüşümlerinin Gerçekçi Bir Analizi**](https://www.linkedin.com/pulse/%C3%A7ift-y%C3%BCzl%C3%BC-katana-yapay-zeka-d%C3%B6n%C3%BC%C5%9F%C3%BCmlerinin-ger%C3%A7ek%C3%A7i-bir-mehmet-turac-80h7f) — AI transformations realistic analysis. The 5 illusions that compound into expensive, fragile systems. (LinkedIn, 2026)
+
+
 ## Supported parsers
 
 | Parser | Matches |
@@ -55,6 +80,11 @@ python3 scripts/flaky.py --cmd "jest --ci" --parser jest --runs 5
 | `gotest` | `--- PASS:`, `--- FAIL:`, `--- SKIP:` |
 | `tap` | `ok N - name`, `not ok N - name` |
 
+#### Writing
+
+- 🗡️ [**Çift Yüzlü Katana: Yapay Zeka Dönüşümlerinin Gerçekçi Bir Analizi**](https://www.linkedin.com/pulse/%C3%A7ift-y%C3%BCzl%C3%BC-katana-yapay-zeka-d%C3%B6n%C3%BC%C5%9F%C3%BCmlerinin-ger%C3%A7ek%C3%A7i-bir-mehmet-turac-80h7f) — AI transformations realistic analysis. The 5 illusions that compound into expensive, fragile systems. (LinkedIn, 2026)
+
+
 ## Exit codes
 
 | Code | Meaning |
@@ -63,6 +93,11 @@ python3 scripts/flaky.py --cmd "jest --ci" --parser jest --runs 5
 | `1` | At least one test is flaky (`0 < flakiness_pct < 100`) |
 | `2` | At least one test is always-failing |
 | `3` | Zero tests parsed but the runner reported activity — re-run with `-v` |
+
+#### Writing
+
+- 🗡️ [**Çift Yüzlü Katana: Yapay Zeka Dönüşümlerinin Gerçekçi Bir Analizi**](https://www.linkedin.com/pulse/%C3%A7ift-y%C3%BCzl%C3%BC-katana-yapay-zeka-d%C3%B6n%C3%BC%C5%9F%C3%BCmlerinin-ger%C3%A7ek%C3%A7i-bir-mehmet-turac-80h7f) — AI transformations realistic analysis. The 5 illusions that compound into expensive, fragile systems. (LinkedIn, 2026)
+
 
 ## Example output (markdown)
 
@@ -77,15 +112,30 @@ python3 scripts/flaky.py --cmd "jest --ci" --parser jest --runs 5
 | tests/test_search.py::test_index_warmup | 8 | 2 | 20.0 |
 ```
 
+#### Writing
+
+- 🗡️ [**Çift Yüzlü Katana: Yapay Zeka Dönüşümlerinin Gerçekçi Bir Analizi**](https://www.linkedin.com/pulse/%C3%A7ift-y%C3%BCzl%C3%BC-katana-yapay-zeka-d%C3%B6n%C3%BC%C5%9F%C3%BCmlerinin-ger%C3%A7ek%C3%A7i-bir-mehmet-turac-80h7f) — AI transformations realistic analysis. The 5 illusions that compound into expensive, fragile systems. (LinkedIn, 2026)
+
+
 ## Limitations
 
 - `--parallel > 1` only works for parallel-safe suites; otherwise concurrent runs share state and lie.
 - Streaming stdout from very long suites is buffered — be patient on the first run.
 - The parser is tuned for default reporters. Custom plugins (pytest-rich, etc.) may need a tweak.
 
+#### Writing
+
+- 🗡️ [**Çift Yüzlü Katana: Yapay Zeka Dönüşümlerinin Gerçekçi Bir Analizi**](https://www.linkedin.com/pulse/%C3%A7ift-y%C3%BCzl%C3%BC-katana-yapay-zeka-d%C3%B6n%C3%BC%C5%9F%C3%BCmlerinin-ger%C3%A7ek%C3%A7i-bir-mehmet-turac-80h7f) — AI transformations realistic analysis. The 5 illusions that compound into expensive, fragile systems. (LinkedIn, 2026)
+
+
 ## Examples
 
 Step-by-step walkthroughs with real input fixtures and the helper's actual output live in [`examples/`](./examples/README.md). Three or four scenarios per plugin — from the happy path to the edge cases the test suite guards.
+
+#### Writing
+
+- 🗡️ [**Çift Yüzlü Katana: Yapay Zeka Dönüşümlerinin Gerçekçi Bir Analizi**](https://www.linkedin.com/pulse/%C3%A7ift-y%C3%BCzl%C3%BC-katana-yapay-zeka-d%C3%B6n%C3%BC%C5%9F%C3%BCmlerinin-ger%C3%A7ek%C3%A7i-bir-mehmet-turac-80h7f) — AI transformations realistic analysis. The 5 illusions that compound into expensive, fragile systems. (LinkedIn, 2026)
+
 
 ## Part of the pluginpool family
 
@@ -100,6 +150,11 @@ Ten focused Claude Code plugins for everyday productivity:
 [todo-harvest](https://github.com/mturac/pluginpool-todo-harvest) ·
 [flaky-detector](https://github.com/mturac/pluginpool-flaky-detector) ·
 [changelog-forge](https://github.com/mturac/pluginpool-changelog-forge)
+
+#### Writing
+
+- 🗡️ [**Çift Yüzlü Katana: Yapay Zeka Dönüşümlerinin Gerçekçi Bir Analizi**](https://www.linkedin.com/pulse/%C3%A7ift-y%C3%BCzl%C3%BC-katana-yapay-zeka-d%C3%B6n%C3%BC%C5%9F%C3%BCmlerinin-ger%C3%A7ek%C3%A7i-bir-mehmet-turac-80h7f) — AI transformations realistic analysis. The 5 illusions that compound into expensive, fragile systems. (LinkedIn, 2026)
+
 
 ## License
 
